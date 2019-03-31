@@ -1,2 +1,7 @@
-build
+3rdparty/build
+3rdparty/source
+3rdparty/install
+
 .vscode
+.vs
+log.txt

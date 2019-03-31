@@ -1,0 +1,17 @@
+source: source
+build: build
+install: install
+
+cmake_args:
+  - -DCMAKE_BUILD_TYPE=Release
+
+depends:
+  ninja: # must
+    git: https://github.com/ninja-build/ninja
+    tag: v1.9.0
+  coroutine:
+    git: https://github.com/swm8023/v_coroutine.git
+  ev:
+    git: https://github.com/swm8023/libev.git
+  http_parser:
+    git: https://github.com/swm8023/http-parser.git
