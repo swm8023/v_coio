@@ -6,6 +6,7 @@
 #include "codec_http.h"
 #include <ev++.h>
 #include <chrono>
+#include <vector>
 
 using namespace v;
 using namespace v::io;
