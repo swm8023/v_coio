@@ -6,16 +6,16 @@
 namespace v {
 namespace io {
 template<typename T>
-class Singleton : NonCopyable{
+class Singleton : NonCopyable {
 public:
-    static T& Instance() {
-        static T t;
-        return t;
-    }
-    
+	static T& Instance() {
+		static T t;
+		return t;
+	}
+
 protected:
-    Singleton() {};
-    ~Singleton() {};
+	Singleton() {};
+	~Singleton() {};
 };
 
 }

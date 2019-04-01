@@ -14,16 +14,16 @@ namespace io {
 template<typename Protocol>
 class Accepter {
 public:
-    Accepter() {}
-    
-    ~Accepter() {}
-    
+	Accepter() {}
+ 
+	~Accepter() {}
+
 	bool Listen(NetAddr const& addr) {
 		if (!socket_.Listen(addr)) {
-            return false;
-        }
+			return false;
+		}
 		return true;
-    }
+	}
 
 	Socket<Protocol> Accept() {
 		Socket<Protocol> new_sock;
@@ -32,7 +32,7 @@ public:
 	}
 
 private:
-    Socket<Protocol> socket_;
+	Socket<Protocol> socket_;
 	
 };
 

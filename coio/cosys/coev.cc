@@ -1,9 +1,11 @@
 #include "coev.h"
 
+
+
 namespace v {
 namespace io {
 
-thread_local std::unordered_map<int, CoEvent> v::io::co_evts;
+thread_local std::unordered_map<int, CoEvent> co_evts;
 
 CoEvent* GetCoEvent(int fd) {
 	auto iter = co_evts.find(fd);

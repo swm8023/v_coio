@@ -13,12 +13,12 @@ namespace v {
 namespace io {
 
 enum {
-    CONN_FLG_PASV       = 0x0001, // passive, for server
-    CONN_FLG_PORT       = 0x0002,
-    CONN_FLG_CONNECTING = 0x0004,
-    CONN_FLG_CONNECTED  = 0x0008,
-    CONN_FLG_CONNFAILED = 0x0010,
-    CONN_FLG_WAIT_CLOSE = 0x0020,
+	CONN_FLG_PASV       = 0x0001, // passive, for server
+	CONN_FLG_PORT       = 0x0002,
+	CONN_FLG_CONNECTING = 0x0004,
+	CONN_FLG_CONNECTED  = 0x0008,
+	CONN_FLG_CONNFAILED = 0x0010,
+	CONN_FLG_WAIT_CLOSE = 0x0020,
 	CONN_FLG_CLOSED     = 0x0040,
 	CONN_FLG_IN_READ    = 0x0080,
 	CONN_FLG_IN_WRITE   = 0x0100
@@ -109,10 +109,10 @@ public:
 	}
 
 private:
-    Socket<Protocol> socket_;
-    Codec codec_;
-    
-    int flag_ {0};
+	Socket<Protocol> socket_;
+	Codec codec_;
+
+	int flag_ {0};
 };
 
 }
