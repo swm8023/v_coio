@@ -1,6 +1,7 @@
 
 #include <functional>
 #include <thread>
+#include <vector>
 
 #include <coio/coio.h>
 #include "codec_http.h"

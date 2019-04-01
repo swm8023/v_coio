@@ -21,9 +21,9 @@ void HttpClient(std::string ip, uint16_t port, int conn_num, int req_num) {
 	int n_req = req_num;
 	int n_conn = conn_num;
 	for (int c = 0; c < conn_num; c++) {
-		RunCoroutine([&req, &n_req, &n_conn]() {
+		RunCoroutine([&]() {
 			Connection<CodecHttpClient, Tcp> conn;
-			bool ret = conn.Connect(NetAddr{ "192.168.137.2", 8383 });
+			bool ret = conn.Connect(NetAddr{ ip, port });
 			if (ret) {
 				conn.Write(req);
 				conn.ReadUntilClose([&conn, &req, &n_req, &n_conn](HttpResponse const& resp) {
