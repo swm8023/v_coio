@@ -37,5 +37,25 @@ inline int CoWrite(int fd, const char* buf, int nbytes) {
 	return ret;
 }
 
+inline int CoConnect(int fd, const struct sockaddr *addr, socklen_t len) {
+	// only support nonblock now, assert nonblock
+	int ret = 0;
+	do {
+		ret = SysConnect(fd, addr, len);
+	} while (ret < 0 && CHECK_ERROR(SysError(), EINTR));
+	if (ret < 0) {
+		int err = SysError();
+		while (CHECK_ERROR(err, EWOULDBLOCK) || CHECK_ERROR(err, EINPROGRESS)) {
+			CoEvent *ev = GetCoEvent(fd);
+			ev->EnterCoWrite();
+			err =  GetSocketError(fd);
+			if (err == 0) {
+				return 0;
+			}
+		}
+	}
+	return ret;
+}
+
 } // v
 } // io

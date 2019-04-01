@@ -2,7 +2,6 @@
 #include <string>
 
 #include "protocol.h"
-#include "protocol_tcp.h"
 
 namespace v {
 namespace io {

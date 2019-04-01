@@ -22,5 +22,12 @@ void MakeFdColexec(int fd) {
 	fcntl(fd, F_SETFD, fcntl(fd, F_GETFD, 0) | FD_CLOEXEC);
 }
 
+int GetSocketError(int fd) {
+	int error;
+	socklen_t errorsz = sizeof(int);
+	getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &errorsz);
+	return error;
+}
+
 }
 }

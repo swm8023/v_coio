@@ -26,14 +26,6 @@ link_directories(${PROJECT_BINARY_DIR}/lib)
 
 add_subdirectory(3rdparty)
 add_subdirectory(coio)
-
-add_executable(main main.cc)
-target_link_libraries(main vcoio vco ev http_parser)
-
-if (WIN32)
-	target_link_libraries(main Ws2_32)
-else()
-	target_link_libraries(main pthread)
-endif()
-
+add_subdirectory(example)
+add_subdirectory(testcase)
 

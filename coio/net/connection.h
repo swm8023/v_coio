@@ -72,7 +72,7 @@ public:
 			}
 			// error or eof
 			if (read_ret <= 0) {
-				LogError("%d Connection error ", socket_.GetFD(), SysError());
+				LogError("Connection error ", socket_.GetFD(), SysError());
 				break;
 			}
 		}

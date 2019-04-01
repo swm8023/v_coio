@@ -22,12 +22,16 @@ inline int SysSocket(int af, int type, int protocol) {
 	return FD_DESC(socket(af, type, protocol));
 }
 
-inline int SysBind(int fd, const struct sockaddr* addr, int addrlen) {
+inline int SysBind(int fd, const struct sockaddr* addr, socklen_t addrlen) {
 	return bind(FD_HANDLE(fd), addr, addrlen);
 }
 
 inline int SysListen(int fd, int backlog) {
 	return listen(FD_HANDLE(fd), backlog);
+}
+
+inline int SysConnect(int fd, const struct sockaddr* addr, socklen_t addrlen) {
+	return connect(FD_HANDLE(fd), addr, addrlen);
 }
 
 inline void SysClose(int fd) {
@@ -36,7 +40,6 @@ inline void SysClose(int fd) {
 #else
 	close(fd);
 #endif
-
 }
 
 inline int SysError() {
@@ -47,6 +50,7 @@ inline int SysError() {
 #endif
 }
 
+int GetSocketError(int fd);
 
 
 void MakeFdReuse(int fd);

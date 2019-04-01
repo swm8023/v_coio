@@ -16,8 +16,15 @@ void MakeFdNonblock(int fd) {
 	ioctlsocket(FD_HANDLE(fd), FIONBIO, &arg);
 }
 
-inline void MakeFdColexec(int fd) {
+void MakeFdColexec(int fd) {
 	// TODO, how to do ???
+}
+
+int GetSocketError(int fd) {
+	int error;
+	socklen_t errorsz = sizeof(int);
+	getsockopt(FD_HANDLE(fd), SOL_SOCKET, SO_ERROR, (char*)&error, &errorsz);
+	return error;
 }
 
 }

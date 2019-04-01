@@ -38,26 +38,15 @@ public:
 	};
 
 	bool Connect(NetAddr const& addr) {
-		//      LogDebug("begin connect to", addr.Ip(), addr.Port());
-		//      addr_local_ = addr;
+		LogDebug("begin connect to", addr.Ip(), addr.Port());
+		addr_local_ = addr;
+		fd_ = SysSocket(addr.SockProtocol(), SOCK_STREAM, 0);
+		RETURN_FALSE_IF_ERROR(fd_ < 0, "Create socket error");
+		
+		MakeFdNonblock(fd_);
 
-			  //fd_ = FD_DESC(socket(addr.SockProtocol(), SOCK_STREAM, 0));
-
-		//      RETURN_FALSE_IF_ERROR(fd_ < 0, "Create socket error");
-		//      
-		//      MakeFdNonblock(fd_);
-		//      
-		//      int r = -1;
-		//      int ret_err  =0;
-		//      do {
-		//          r = connect(FD_HANDLE(fd_), addr.SockAddr(), addr.SockAddrSize());
-		//          ret_err = LAST_ERRNO();
-		//      } while (r == -1 && errno == EINTR);
-		//      if (r >= 0 || (r == -1 && ErrnoIsWouldblock(ret_err))) {
-		//          return true;
-		//      }
-		//      Close();
-		return false;
+		int ret = CoConnect(fd_, addr.SockAddr(), addr.SockAddrSize());
+		return ret == 0 ? true : false;
 	}
 
 	bool Accept(Tcp &t) {

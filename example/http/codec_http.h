@@ -4,19 +4,18 @@
 #include <unordered_map>
 
 #include <http_parser/http_parser.h>
+#include <coio/coio.h>
 
-#include <coio/net/codec.h>
-
-namespace v {
-namespace io {
+using namespace v::io;
 
 using HttpRequest = http::HttpRequest;
 using HttpResponse = http::HttpResponse;
 
-class CodecHttp : public BaseCodec<HttpRequest, HttpResponse> {
+template<typename ReqType, typename RespType>
+class CodecHttp : public BaseCodec<ReqType, RespType> {
 public:
 	CodecHttp() {
-		parser_.Init(&request_cahce_, HTTP_REQUEST,
+		parser_.Init(&request_cahce_, ReqType::PARSER_TYPE,
 			std::bind(&CodecHttp::ExecWhenParsed, this, std::placeholders::_1));
 	}
 	
@@ -41,12 +40,14 @@ public:
 	}
 
 private:
-	http::HttpRequest request_cahce_;
+	ReqPackType request_cahce_;
 	http::HttpParser parser_;
 
 	bool read_error_{ false };
 };
 
+typedef CodecHttp<HttpRequest, HttpResponse> CodecHttpServer;
+typedef CodecHttp<HttpResponse, HttpRequest> CodecHttpClient;
 
 
 class HttpService {
@@ -80,6 +81,3 @@ private:
 
 	std::unordered_map<std::string, Handler> handler_map_;
 };
-
-}
-}
