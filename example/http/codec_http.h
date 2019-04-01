@@ -14,6 +14,7 @@ using HttpResponse = http::HttpResponse;
 template<typename ReqType, typename RespType>
 class CodecHttp : public BaseCodec<ReqType, RespType> {
 public:
+	using Base = BaseCodec<ReqType, RespType>;
 	CodecHttp() {
 		parser_.Init(&request_cahce_, ReqType::PARSER_TYPE,
 			std::bind(&CodecHttp::ExecWhenParsed, this, std::placeholders::_1));
@@ -24,7 +25,7 @@ public:
 		return read_error_ ? -1 : size;
 	};
 
-	virtual std::string ResponseTostr(RespPackType const& pack, int &size) {
+	std::string ResponseTostr(RespType const& pack, int &size) {
 		std::string ret = std::move(pack.GetStr());
 		size = ret.length();
 		return std::move(ret);
@@ -32,15 +33,16 @@ public:
 
 	void ExecWhenParsed(bool ret) {
 		if (ret) {
-			
-			if (read_cb_) read_cb_(request_cahce_);
+			if (Base::read_cb_) {
+				Base::read_cb_(request_cahce_);
+			}
 		} else {
 			read_error_ = true;
 		}
 	}
 
 private:
-	ReqPackType request_cahce_;
+	ReqType request_cahce_;
 	http::HttpParser parser_;
 
 	bool read_error_{ false };

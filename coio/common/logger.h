@@ -80,8 +80,8 @@ public:
 		}
 
 		std::ostringstream temp_os;
-		(FormatHeader(temp_os, lvl) << ... << AddSpaceHelper(args)) << std::endl;
-		//(FormatHeader(temp_os, lvl) << ... << args) << std::endl;
+		//(FormatHeader(temp_os, lvl) << ... << AddSpaceHelper(args)) << std::endl;
+		(FormatHeader(temp_os, lvl) << ... << args) << std::endl;
 
 		GetStream() << temp_os.str();
 		QuitIfCriticl(lvl);

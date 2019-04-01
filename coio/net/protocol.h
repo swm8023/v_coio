@@ -28,8 +28,5 @@ public:
 
 };
 
-template<typename T>
-using IsProtocol = std::enable_if_t<std::is_base_of_v<Protocol<T>, std::remove_reference_t<T>>>;
-
 }
 }

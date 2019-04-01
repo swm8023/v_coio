@@ -6,7 +6,7 @@
 namespace v {
 namespace io {
 
-template<typename T, typename = IsProtocol<T>>
+template<typename T>
 class Socket {
 public:
 	Socket() {
