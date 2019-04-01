@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
 #endif
 
 	int thread_num = 1;
-	if (argc > 2)  {
+	if (argc > 1)  {
 		thread_num = atoi(argv[1]);
 	}
 

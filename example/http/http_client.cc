@@ -67,11 +67,11 @@ int main(int argc, char *argv[]) {
 	std::string ip = "127.0.0.1";
 	uint16_t port = 8383;
 
-	if (argc > 2) thread_num = atoi(argv[1]);
-	if (argc > 3) conn_num = atoi(argv[2]);
-	if (argc > 4) request_num = atoi(argv[3]);
-	if (argc > 5) ip = std::string(argv[4]);
-	if (argc > 6) port = (uint16_t)atoi(argv[5]);
+	if (argc > 1) thread_num = atoi(argv[1]);
+	if (argc > 2) conn_num = atoi(argv[2]);
+	if (argc > 3) request_num = atoi(argv[3]);
+	if (argc > 4) ip = std::string(argv[4]);
+	if (argc > 5) port = (uint16_t)atoi(argv[5]);
 
 	LogInfo(ip, ":", port, " thread ", thread_num, "conn ", conn_num," request ", request_num);
 	std::vector<std::thread> t(thread_num);
