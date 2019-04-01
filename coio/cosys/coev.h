@@ -41,8 +41,8 @@ public:
 		io_r_.stop();
 		io_w_.stop();
 		// TODO, maybe waiting ?
+		assert(w_co_ == nullptr);
 		assert(r_co_ == nullptr);
-		assert(w_ro_ == nullptr);
 	}
 
 	void EnterCoRead(){

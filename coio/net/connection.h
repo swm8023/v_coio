@@ -49,14 +49,14 @@ public:
 		// create by client
 		flag_ |= CONN_FLG_PORT | CONN_FLG_CONNECTING;
 		bool ret = socket_.Connect(addr);
-		flag |= ret ? CONN_FLG_CONNECTED : CONN_FLG_CONNFAILED;
-		flag &= ~CONN_FLG_CONNECTING;
+		flag_ |= ret ? CONN_FLG_CONNECTED : CONN_FLG_CONNFAILED;
+		flag_ &= ~CONN_FLG_CONNECTING;
 		return ret;
 	}
 
 	void ReadUntilClose(ReadCallback const& callback) {
 		// only allow one reader
-		assert(0 == (flag & CONN_FLG_IN_READ));
+		assert(0 == (flag_ & CONN_FLG_IN_READ));
 		codec_.SetReadCallback(callback);
 
 		flag_ |= CONN_FLG_IN_READ;

@@ -21,6 +21,6 @@
 #include <errno.h>
 
 #define FD_DESC(handle) handle
-#define FD_HANDLE(fd)
+#define FD_HANDLE(fd) fd
 #define CHECK_ERROR(err, ErrName) ((err) ==  ErrName)
 #endif

@@ -14,7 +14,7 @@ public:
 
 	typedef std::function<void(ReqPackType const& f)> ReadCallback;
 
-	virtual int OnReadData(const char* data, int size, ReadCallback const& read_cb) = 0;
+	virtual int OnReadData(const char* data, int size) = 0;
 	virtual std::string ResponseTostr(RespPackType const&, int &size) = 0;
 
 	void SetReadCallback(ReadCallback const& read_cb) {

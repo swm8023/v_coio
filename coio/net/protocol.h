@@ -8,8 +8,6 @@
 namespace v {
 namespace io {
 
-typedef std::function<bool(int read_sz, char **next_addr, int &next_sz)> FuncOnRWAndGetNextAddr;
-
 
 template<typename T>
 class Protocol {

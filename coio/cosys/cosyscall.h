@@ -6,7 +6,7 @@
 namespace v {
 namespace io {
 
-inline int CoAccept(int fd, struct sockaddr *addr, int *addrlen) {
+inline int CoAccept(int fd, struct sockaddr *addr, socklen_t *addrlen) {
 	CoEvent* ev = GetCoEvent(fd);
 	ev->EnterCoRead();
 	// only support nonblock now, assert nonblock

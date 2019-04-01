@@ -6,7 +6,7 @@
 namespace v {
 namespace io {
 
-inline int SysAccept(int fd, struct sockaddr *addr, int *addrlen) {
+inline int SysAccept(int fd, struct sockaddr *addr, socklen_t *addrlen) {
 	return FD_DESC(accept(FD_HANDLE(fd), addr, addrlen));
 }
 

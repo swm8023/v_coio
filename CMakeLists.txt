@@ -2,6 +2,7 @@ project(coio)
 
 cmake_minimum_required(VERSION 3.0)
 
+set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
 # build config
 set(CMAKE_CXX_STANDARD 17)
@@ -31,6 +32,8 @@ target_link_libraries(main vcoio vco ev http_parser)
 
 if (WIN32)
 	target_link_libraries(main Ws2_32)
+else()
+	target_link_libraries(main pthread)
 endif()
 
 
