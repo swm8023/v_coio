@@ -16,7 +16,7 @@ using namespace v::co;
 
 static int g_thread_num = 2;
 static int g_conn_num = 10;
-static int g_req_num = 1000000;
+static int g_req_num = 100000;
 static std::string g_ip = "127.0.0.1";
 static uint16_t g_port = 8383;
 
@@ -39,7 +39,10 @@ void Report() {
 void HttpClient() {
 	HttpRequest req;
 	req.Write(HTTP_GET, "/test");
+	// just test keep-alive
 	req.SetHeader("Connection", "Keep-Alive");
+	// avoid go http return 400
+	req.SetHeader("Host", "127.0.0.1");
 
 	for (int c = 0; c < g_conn_num; c++) {
 		RunCoroutine([&]() {
@@ -100,7 +103,9 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < g_thread_num; i++) {
 		t[i].join();
 	}
-	
+
+	LogInfo("end... remain request ", g_remain_req);
+
 
 	getchar();
 
