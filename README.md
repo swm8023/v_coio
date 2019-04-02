@@ -70,7 +70,7 @@ this_io::Get()->Run();
 ## benchmark
 use http_client and http_server in example
 
-CPU: Intel Xeon E312xx 16 kernel
+CPU: Intel Xeon E312xx 16 kernel  
 8 kernel for client and 8 client for server
 
 QPS: aboud 26W/s
